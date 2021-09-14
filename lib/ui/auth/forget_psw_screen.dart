@@ -53,9 +53,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         const TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            label: Text("Email"),
-                            border: OutlineInputBorder(),
-                          ),
+                              label: Text("Email"),
+                              hintText: "Enter your email",
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.email)),
                         ),
                         const SizedBox(
                           height: 30,

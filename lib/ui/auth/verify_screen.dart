@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:login_app/ui/auth/signup_screen.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({Key? key}) : super(key: key);
@@ -230,6 +232,38 @@ class _VerifyScreenState extends State<VerifyScreen> {
                             _buildHeader(),
                             const SizedBox(height: 20),
                             _buildCodeInputBox(),
+                            const SizedBox(height: 20),
+                            RichText(
+                              text: TextSpan(children: [
+                                const TextSpan(
+                                    text: "If you didn't received code! ",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                    )),
+                                TextSpan(
+                                  text: "Resend",
+                                  style: const TextStyle(
+                                    color: Colors.blueAccent,
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // Resend OTP
+                                    },
+                                )
+                              ]),
+                            ),
+                            const SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: null,
+                              child: const Text("Verify"),
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(double.infinity, 50)),
+                            ),
+                            const SizedBox(height: 20),
+                            const Text(
+                                "NOTE: One Time Password will expire in ${10} mins.")
                           ],
                         ),
                       ),

@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,18 +52,32 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             label: Text("Email"),
+                            hintText: "Enter your email",
                             border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.email),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
-                          obscureText: true,
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("Password"),
+                            hintText: "Enter your password",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(

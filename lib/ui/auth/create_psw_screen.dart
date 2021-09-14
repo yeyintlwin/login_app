@@ -9,6 +9,7 @@ class CreatePasswordScreen extends StatefulWidget {
 }
 
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,21 +54,47 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("New Password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("New Password"),
+                            hintText: "Enter your new password",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Confirm Password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("Confirm Password"),
+                            hintText: "Enter your new password again",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(

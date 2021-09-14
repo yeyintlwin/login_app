@@ -10,7 +10,8 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool isChecked = false;
+  bool _isChecked = false;
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             label: Text("Full Name"),
+                            hintText: "Enter your name",
                             border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.person),
                           ),
                         ),
                         const SizedBox(
@@ -58,7 +61,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             label: Text("Email"),
+                            hintText: "Enter your email",
                             border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.mail),
                           ),
                         ),
                         const SizedBox(
@@ -67,31 +72,52 @@ class _SignupScreenState extends State<SignupScreen> {
                         const TextField(
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            label: Text("Phone Number"),
-                            border: OutlineInputBorder(),
-                          ),
+                              label: Text("Phone Number"),
+                              hintText: "Enter your number",
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.phone_android)),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
-                          obscureText: true,
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Password"),
-                            border: OutlineInputBorder(),
-                          ),
+                              label: const Text("Password"),
+                              hintText: "Enter your password",
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                  icon: Icon(_isObscure
+                                      ? Icons.visibility_off
+                                      : Icons.visibility))),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
-                          obscureText: true,
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Confirm Password"),
-                            border: OutlineInputBorder(),
-                          ),
+                              label: const Text("Confirm Password"),
+                              hintText: "Enter your password again",
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                  icon: Icon(_isObscure
+                                      ? Icons.visibility_off
+                                      : Icons.visibility))),
                         ),
                         const SizedBox(
                           height: 20,
@@ -101,10 +127,10 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Row(
                               children: [
                                 Checkbox(
-                                    value: isChecked,
+                                    value: _isChecked,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        isChecked = value!;
+                                        _isChecked = value!;
                                       });
                                     }),
                                 Expanded(

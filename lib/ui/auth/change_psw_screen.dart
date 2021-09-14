@@ -10,6 +10,7 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,31 +49,70 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Current password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("Current password"),
+                            hintText: "Enter your curent password",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.password),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("New password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("New password"),
+                            hintText: "Enter your new password",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextField(
+                        TextField(
+                          obscureText: _isObscure,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                            label: Text("Confirm password"),
-                            border: OutlineInputBorder(),
+                            label: const Text("Confirm password"),
+                            hintText: "Enter your new password again",
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
                           ),
                         ),
                         const SizedBox(
