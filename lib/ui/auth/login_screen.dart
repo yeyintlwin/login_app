@@ -17,95 +17,127 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        label: Text("Email"),
-                      ),
-                    ),
-                    const TextField(
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: InputDecoration(
-                        label: Text("Password"),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Forgot Password?",
-                          style: const TextStyle(
-                            color: Colors.blueAccent,
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ForgetPasswordScreen()));
-                            },
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Login"),
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(children: [
-                        const TextSpan(
-                            text: "Don't have an account? ",
+      body: Stack(
+        children: [
+          // add: Background Image
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              foregroundColor: Colors.black,
+            ),
+            body: SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "Login",
                             style: TextStyle(
-                              color: Colors.grey,
-                            )),
-                        TextSpan(
-                          text: "Sign Up",
-                          style: const TextStyle(
-                            color: Colors.blueAccent,
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.bold,
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignupScreen()));
-                            },
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            label: Text("Email"),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const TextField(
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            label: Text("Password"),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          child: RichText(
+                            text: TextSpan(
+                              text: "Forgot Password?",
+                              style: const TextStyle(
+                                color: Colors.blueAccent,
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ForgetPasswordScreen()));
+                                },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("Login"),
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(double.infinity, 50)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        RichText(
+                          text: TextSpan(children: [
+                            const TextSpan(
+                                text: "Don't have an account? ",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                )),
+                            TextSpan(
+                              text: "Sign Up",
+                              style: const TextStyle(
+                                color: Colors.blueAccent,
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignupScreen()));
+                                },
+                            )
+                          ]),
                         )
-                      ]),
-                    )
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ));
+          )
+        ],
+      ),
+    );
   }
 }

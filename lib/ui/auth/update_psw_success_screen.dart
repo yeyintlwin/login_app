@@ -26,12 +26,18 @@ class _PasswordUpdatedSuccessScreenState
                     width: 120,
                     height: 120,
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Text(
                     "Password Updated!",
                     style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 30,
                   ),
                   const Text(
                     "Your password has been changed successfully, Use your new password to login.",
@@ -40,8 +46,16 @@ class _PasswordUpdatedSuccessScreenState
                       fontSize: 18,
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   ElevatedButton(
-                      onPressed: () {}, child: const Text("Login now")),
+                    onPressed: () {},
+                    child: const Text("Login now"),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                    ),
+                  ),
                 ],
               ),
             ),
