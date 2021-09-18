@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:login_app/ui/activity_list.dart';
+import 'package:login_app/activity_list.dart';
 
 void main() {
   runApp(const MyApp());

@@ -7,6 +7,8 @@ import 'package:login_app/ui/auth/signup_screen.dart';
 import 'package:login_app/ui/auth/signup_success_sreen.dart';
 import 'package:login_app/ui/auth/update_psw_success_screen.dart';
 import 'package:login_app/ui/auth/verify_screen.dart';
+import 'package:login_app/ui/test/dialog_box.dart';
+import 'package:login_app/ui/test/fetch_data.dart';
 
 class ActivitiesListScreen extends StatefulWidget {
   const ActivitiesListScreen({Key? key}) : super(key: key);
@@ -116,6 +118,25 @@ class _ActivitiesListScreenState extends State<ActivitiesListScreen> {
                                         const VerifyScreen()));
                           },
                           child: const Text("Verify Screen"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DialogTestScreen()));
+                          },
+                          child: const Text("Test Dialog"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const TestScreen()));
+                          },
+                          child: const Text("HTTP Request"),
                         ),
                       ],
                     ),

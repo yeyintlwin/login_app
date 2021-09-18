@@ -147,6 +147,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   var keys = '';
   // This method is sense the input value and write output.
+
+  bool _isEntered = false;
   void addKey(var input) {
     setState(() {
       if (input == '-1') {
@@ -184,8 +186,10 @@ class _VerifyScreenState extends State<VerifyScreen> {
         _showError = false;
       }
 
+      _isEntered = false;
       if (keys.length == 4) {
         debugPrint("make request");
+        _isEntered = true;
       }
     });
   }
@@ -195,8 +199,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
     setState(() {
       // TODO: Clear all
       keys = '';
-
       _text1 = _text2 = _text3 = _text4 = '-';
+      _isEntered = false;
     });
   }
 
@@ -211,6 +215,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // bool _isEntered = false;
     return Scaffold(
       body: Stack(
         children: [
@@ -256,7 +261,11 @@ class _VerifyScreenState extends State<VerifyScreen> {
                             ),
                             const SizedBox(height: 20),
                             ElevatedButton(
-                              onPressed: null,
+                              onPressed: _isEntered
+                                  ? () {
+                                      // Do something.
+                                    }
+                                  : null,
                               child: const Text("Verify"),
                               style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(double.infinity, 50)),
