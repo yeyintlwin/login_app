@@ -15,7 +15,6 @@ class _TestScreenState extends State<TestScreen> {
   late Future<Album> futureAlbum;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     futureAlbum = fetchAlbum();
   }

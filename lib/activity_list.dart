@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/ui/auth/change_psw_screen.dart';
-import 'package:login_app/ui/auth/create_psw_screen.dart';
-import 'package:login_app/ui/auth/forget_psw_screen.dart';
-import 'package:login_app/ui/auth/login_screen.dart';
-import 'package:login_app/ui/auth/signup_screen.dart';
-import 'package:login_app/ui/auth/signup_success_sreen.dart';
-import 'package:login_app/ui/auth/update_psw_success_screen.dart';
-import 'package:login_app/ui/auth/verify_screen.dart';
-import 'package:login_app/ui/test/dialog_box.dart';
-import 'package:login_app/ui/test/fetch_data.dart';
+import 'package:login_app/pages/change_psw_screen.dart';
+import 'package:login_app/pages/create_psw_screen.dart';
+import 'package:login_app/pages/forget_psw_screen.dart';
+import 'package:login_app/pages/login_screen.dart';
+import 'package:login_app/pages/signup_screen.dart';
+import 'package:login_app/pages/signup_success_sreen.dart';
+import 'package:login_app/pages/update_psw_success_screen.dart';
+import 'package:login_app/pages/verify_screen.dart';
+import 'package:login_app/test/dialog_box.dart';
+import 'package:login_app/test/fetch_data.dart';
 
 class ActivitiesListScreen extends StatefulWidget {
   const ActivitiesListScreen({Key? key}) : super(key: key);

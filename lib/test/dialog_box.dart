@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/ui/widgets/progress_dialog.dart';
+import 'package:login_app/widgets/progress_dialog.dart';
 
 class DialogTestScreen extends StatefulWidget {
   const DialogTestScreen({Key? key}) : super(key: key);

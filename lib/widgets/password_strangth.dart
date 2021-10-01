@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class PasswordStrengthWidget extends StatefulWidget {
   TextEditingController controller;
   PasswordStrengthWidget({Key? key, required this.controller})

@@ -1,13 +1,14 @@
 class InputValidators {
   // Change to Validators
-  static const PATTERN_EMAIL =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  static const PATTERN_USERNAME = r'^(?![\s.]+$)[a-zA-Z\s.]*$';
-  static const PATTERN_PHONE = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$';
+  static final emailScheme = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  static final usernameScheme = RegExp(r'^(?![\s.]+$)[a-zA-Z\s.]*$');
+  static final phoneNumScheme =
+      RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
 
   static emailAddressValidator(String email) {
     if (email.isEmpty) return "Email must not be empty.";
-    if (!RegExp(PATTERN_EMAIL).hasMatch(email)) {
+    if (!emailScheme.hasMatch(email)) {
       return "Invalid email address.";
     }
     return null;
@@ -35,7 +36,7 @@ class InputValidators {
   static usernameValidator(String username) {
     if (username.isEmpty) return "Username must not be empty.";
 
-    if (!RegExp(PATTERN_USERNAME).hasMatch(username)) {
+    if (!usernameScheme.hasMatch(username)) {
       return "Name must not contain the special characters and numbers.";
     }
     return null;
@@ -44,7 +45,7 @@ class InputValidators {
   static phoneValidator(String phone) {
     if (phone.isEmpty) return 'Phone number must not be empty.';
 
-    if (!RegExp(PATTERN_PHONE).hasMatch(phone)) {
+    if (!phoneNumScheme.hasMatch(phone)) {
       return 'Invalid phone number.';
     }
 

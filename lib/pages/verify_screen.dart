@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:login_app/ui/auth/signup_screen.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({Key? key}) : super(key: key);
@@ -152,7 +151,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   void addKey(var input) {
     setState(() {
       if (input == '-1') {
-        if (keys.length <= 0) return;
+        if (keys.isEmpty) return;
         keys = keys.substring(0, keys.length - 1);
       } else {
         if (keys.length >= 4) return;

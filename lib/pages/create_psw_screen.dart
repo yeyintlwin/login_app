@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login_app/ui/utils/validator.dart';
+import 'package:login_app/utils/validator.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({Key? key}) : super(key: key);

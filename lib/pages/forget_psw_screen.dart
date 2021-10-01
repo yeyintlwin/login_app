@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/ui/utils/validator.dart';
+import 'package:login_app/utils/validator.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -10,8 +10,6 @@ class ForgetPasswordScreen extends StatefulWidget {
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

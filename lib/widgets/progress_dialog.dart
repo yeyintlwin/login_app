@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-/**
- * Ye Yint Lwin
- * 2021 Sep 16 1:06 am
-*/
+import 'package:flutter/material.dart';
 
 class DialogBuilder {
   BuildContext context;
@@ -13,13 +10,18 @@ class DialogBuilder {
     showDialog(
       context: context,
       builder: (context) {
-        return WillPopScope(
-          child: AlertDialog(
-            content: LoadingIndicator(
-              message: message,
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+          child: WillPopScope(
+            child: AlertDialog(
+              content: LoadingIndicator(
+                message: message,
+              ),
+
+              //   backgroundColor: Color(0x88000000),
             ),
+            onWillPop: () async => false,
           ),
-          onWillPop: () async => false,
         );
       },
     );

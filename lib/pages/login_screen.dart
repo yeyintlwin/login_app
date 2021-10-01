@@ -1,13 +1,18 @@
-import 'dart:convert';
+import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:login_app/ui/auth/forget_psw_screen.dart';
-import 'package:login_app/ui/auth/signup_screen.dart';
-import 'package:login_app/ui/utils/validator.dart';
+import 'package:login_app/api/api_service.dart';
+import 'package:login_app/model/login_model.dart';
+import 'package:login_app/pages/forget_psw_screen.dart';
+import 'package:login_app/pages/signup_screen.dart';
+import 'package:login_app/utils/utils.dart';
+import 'package:login_app/utils/validator.dart';
+import 'package:login_app/widgets/progress_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -18,10 +23,38 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  late LoginRequestModel loginRequestModel;
+
+  _showNoConnectionDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+            child: AlertDialog(
+              title: const Text("No connection"),
+              content: const Text("Please check your internet connection."),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Close"),
+                )
+              ],
+            ),
+          );
+        });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loginRequestModel = LoginRequestModel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 30,
                           ),
                           TextFormField(
-                            controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                               label: Text("Email"),
@@ -69,12 +101,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             validator: (value) =>
                                 InputValidators.emailAddressValidator(value!),
+                            onSaved: (value) => loginRequestModel.email = value,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
-                            controller: _passwordController,
                             obscureText: _isObscure,
                             keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
@@ -95,6 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             validator: (value) =>
                                 InputValidators.passwordValidator(value!),
+                            onSaved: (value) =>
+                                loginRequestModel.password = value,
                           ),
                           const SizedBox(
                             height: 20,
@@ -126,16 +160,38 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 20,
                           ),
                           ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                String email = _emailController.text;
-                                String password = _passwordController.text;
-                                var json = jsonDecode(
-                                    "{\"email\": \"$email\", \"password\": \"$password\"}");
+                            onPressed: () async {
+                              final form = _formKey.currentState;
 
-                                print(json);
+                              if (form!.validate()) {
+                                form.save();
 
-                                // make req
+                                bool hasNetwork = await Utils.hasNetwork();
+                                if (!hasNetwork) {
+                                  log("error: No internet connectioin.");
+                                  _showNoConnectionDialog(context);
+                                  return;
+                                }
+
+                                DialogBuilder(context).showLoadingIndicator(
+                                    message: "Logging in...");
+
+                                // print(loginRequestModel.toJson());
+
+                                APIService apiService = APIService();
+                                apiService
+                                    .login(loginRequestModel)
+                                    .then((value) {
+                                  if (value.token.isNotEmpty) {
+                                    // ignore: avoid_print
+                                    log("token: ${value.token}");
+                                  } else {
+                                    // ignore: avoid_print
+                                    log("error: ${value.error}");
+                                  }
+
+                                  DialogBuilder(context).dismmis();
+                                });
                               }
                             },
                             child: const Text("Login"),
